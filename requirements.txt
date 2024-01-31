@@ -1,6 +1,10 @@
 pandas
 numpy
 seaborn
+dill
 scikit-learn
 category-encoders
--e .
+imbalanced-learn
+lightgbm
+xgboost
+# -e .

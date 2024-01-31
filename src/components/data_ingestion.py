@@ -7,6 +7,10 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+
+from src.components.model_trainer import ModelTrainer
+
 # Configuration settings: parameters such as source location, file formats, connection details, etc# 
 @dataclass
 class DataIngestionConfig:
@@ -22,6 +26,19 @@ class DataIngestion:
         logging.info("Initiated Data Ingestion")
         try:
             df = pd.read_csv('notebook/data/transactions.csv')
+
+            df.rename(columns = {'Account':'Sender Account', 'Account.1':'Receiver Account'}, inplace = True)
+            df.drop_duplicates(inplace=True)
+            df.reset_index(drop=True, inplace=True)
+
+            df['Timestamp'] = pd.to_datetime(df['Timestamp'], format='%Y/%m/%d %H:%M')
+            df['Year'] = df['Timestamp'].dt.year
+            df['Month'] = df['Timestamp'].dt.month
+            df['Day'] = df['Timestamp'].dt.day
+            df['Hour'] = df['Timestamp'].dt.hour
+            df['Minute'] = df['Timestamp'].dt.minute
+            df.drop(columns=['Year', 'Month', 'Timestamp'], inplace=True)
+
             logging.info("Read the dataset as dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok = True)
@@ -45,7 +62,13 @@ class DataIngestion:
             raise CustomException(e, sys)
         
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     obj = DataIngestion()
-#     obj.initiate_data_ingestion()
+    obj = DataIngestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+
+    data_transformation = DataTransformation()
+    train_array, test_array, _ = data_transformation.initiate_data_transformation(train_data, test_data)
+
+    model_trainer = ModelTrainer()
+    print(model_trainer.initiate_model_trainer(train_array, test_array))
