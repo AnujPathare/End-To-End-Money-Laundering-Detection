@@ -1,6 +1,5 @@
 import sys
 
-
 def error_message_details(error, error_detail:sys):
     _, _, exc_tb = error_detail.exc_info() # Store traceback information in 'exc_traceback'
     file_name = exc_tb.tb_frame.f_code.co_filename
@@ -18,4 +17,3 @@ class CustomException(Exception):
         def __str__(self):
             return self.error_message
         
-
