@@ -7,4 +7,5 @@ category-encoders
 imbalanced-learn
 lightgbm
 xgboost
+Flask
 # -e .

@@ -1,0 +1,76 @@
+<html>
+<body>
+    <div class="login">   
+       <form action="{{ url_for('predict')}}" method="post">
+        <h1>
+            <legend>Money Laundering Detection</legend>
+        </h1>
+        <div class="form-group">
+            <label for="From_Bank">From Bank:</label>
+            <input type="text" id="From_Bank" name="From_Bank" placeholder="From Bank (int)">
+        </div>
+    
+        <div class="form-group">
+            <label for="Sender_Account">Sender Account:</label>
+            <input type="text" id="Sender_Account" name="Sender_Account" placeholder="Sender Account (str)">
+        </div>
+    
+        <div class="form-group">
+            <label for="To_Bank">To Bank:</label>
+            <input type="text" id="To_Bank" name="To_Bank" placeholder="To Bank (int)">
+        </div>
+
+        <div class="form-group">
+            <label for="Receiver_Account">Receiver Account:</label>
+            <input type="text" id="Receiver_Account" name="Receiver_Account" placeholder="Receiver Account (str)">
+        </div>
+    
+        <div class="form-group">  
+            <label for="Amount_Received">Amount Received:</label>
+            <input type="text" id="Amount_Received" name="Amount_Received" placeholder="Amount Received (float)">
+        </div>
+        
+        <div class="form-group">
+            <label for="Receiving_Currency">Receiving Currency:</label>
+            <input type="text" id="Receiving_Currency" name="Receiving_Currency" placeholder="Receiving Currency (str)">
+        </div>
+      
+        <div class="form-group">
+            <label for="Amount_Paid">Amount Paid:</label>
+            <input type="text" id="Amount_Paid" name="Amount_Paid" placeholder="Amount Paid (float)">
+        </div>
+      
+        <div class="form-group">
+            <label for="Payment_Currency">Payment Currency:</label>
+            <input type="text" id="Payment_Currency" name="Payment_Currency" placeholder="Payment Currency (str)">
+        </div> 
+        
+        <div class="form-group">
+            <label for="Payment_Format">Payment Format:</label>
+            <input type="text" id="Payment_Format" name="Payment_Format" placeholder="Payment Format (str)">
+        </div>
+
+        <div class="form-group">
+            <label for="Day">Day:</label>
+            <input type="text" id="Day" name="Day" placeholder="Day (int)">
+        </div>
+
+        <div class="form-group">
+            <label for="Hour">Hour:</label>
+            <input type="text" id="Hour" name="Hour" placeholder="Hour (int)">
+        </div>
+
+        <div class="form-group">
+            <label for="Minute">Minute:</label>
+            <input type="text" id="Minute" name="Minute" placeholder="Minute (int)">
+        </div>
+        
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Check Transaction" required />
+        </div>
+        </form>
+    <h2>
+       THE Transaction is {{results}}
+    </h2>
+   <body>
+</html>

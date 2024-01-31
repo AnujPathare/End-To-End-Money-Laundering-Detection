@@ -20,7 +20,7 @@ def get_requirements(file_path:str)->List[str]:
 setup(
     name='Money Laundering Detection Model',
     version='0.0.1',
-    author='Anuj',
+    author='Anuj Pathare',
     author_email='anujpathare@gmail.com',
     packages=find_packages(),
     install_requires=get_requirements('requirements.txt')
