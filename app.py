@@ -38,6 +38,7 @@ def predict():
         results = predict_pipeline.predict(pred_df)
 
         results = ['Legitimate' if results[0] == 0 else 'Money Laundering']
+        
         return render_template('index.html',results=results[0])
 
 
