@@ -58,20 +58,23 @@ class ModelTrainer:
             ]
             best_model = models[best_model_name]
 
-            if best_model_recall_score < 0.6:
-                raise CustomException("No best model found.")
-            
             logging.info("Model Training completed")
-
-            save_object(
-                file_path=self.model_trainer_config.trained_model_file_path,
-                obj=best_model
-            )
-
-            predicted = best_model.predict(X_test)
-            recall = recall_score(y_test, predicted)
             
-            return recall
+            if best_model_recall_score < 0.6:
+                logging.info("No best model found")
+            
+            else:
+                save_object(
+                    file_path=self.model_trainer_config.trained_model_file_path,
+                    obj=best_model
+                )
+
+                logging.info(f"Best model: {best_model_name}")
+
+                y_pred = best_model.predict(X_test)
+                recall = recall_score(y_test, y_pred)
+                
+                return recall
 
         except Exception as e:
             raise CustomException(e, sys)
